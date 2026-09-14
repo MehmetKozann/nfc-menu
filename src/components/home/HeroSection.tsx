@@ -3,18 +3,12 @@
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { CafeConfig } from '@/types';
-import { TableBadge } from '../common/TableBadge';
-import { LanguageToggle } from '../common/LanguageToggle';
 import { 
   Coffee, 
   Wifi, 
   Sparkles, 
   Clock, 
-  MapPin, 
-  ArrowRight,
-  ShieldCheck,
-  Flame,
-  ChevronDown
+  ArrowRight
 } from 'lucide-react';
 
 interface HeroSectionProps {
@@ -33,11 +27,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const { t, getLocalized } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden pt-4 pb-8 px-4">
+    <section className="relative overflow-hidden pt-2 pb-6 px-4 w-full">
       {/* Background Decorative Gradient Orbs */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-72 bg-gradient-to-b from-[#F3ECE2] via-[#FAF7F2] to-transparent -z-10 rounded-full blur-3xl opacity-70 pointer-events-none" />
 
-      <div className="max-w-xl mx-auto space-y-6 text-center">
+      <div className="max-w-xl mx-auto space-y-5 text-center">
         
         {/* Top Badges & Context */}
         <div className="flex flex-col items-center gap-3">
@@ -76,18 +70,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
 
         {/* Hero Card Container */}
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-[#E8DFD5] shadow-soft space-y-5">
+        <div className="bg-white/85 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-[#E8DFD5] shadow-soft space-y-5">
           <div className="space-y-2">
             <h2 className="text-xl sm:text-2xl font-extrabold text-[#1F1612]">
               {t('welcomeTitle')}
             </h2>
-            <p className="text-sm text-[#6B5E55] leading-relaxed max-w-md mx-auto">
+            <p className="text-xs sm:text-sm text-[#6B5E55] leading-relaxed max-w-md mx-auto">
               {t('welcomeSubtitle')}
             </p>
           </div>
 
-          {/* Primary & Secondary Action Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          {/* Primary & Secondary Action Buttons (The Only Main Buttons) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
             {/* Primary Action: Menüyü Gör */}
             <button
               type="button"
@@ -110,22 +104,49 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </button>
           </div>
 
-          {/* Quick Hours Note */}
+          {/* Working Hours */}
           <div className="pt-2 flex items-center justify-center gap-2 text-xs text-[#8C7A6E]">
             <Clock className="w-3.5 h-3.5 text-[#C46835]" />
             <span>{getLocalized(cafeConfig.workingHours)}</span>
           </div>
         </div>
 
-        {/* Scroll down prompt to menu */}
-        <button
-          type="button"
-          onClick={onViewMenuClick}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8C7A6E] hover:text-[#1F1612] transition-colors pt-1 animate-bounce"
-        >
-          <span>{t('viewMenu')}</span>
-          <ChevronDown className="w-4 h-4" />
-        </button>
+        {/* Prominent High-End Instagram Showcase Card */}
+        <div className="pt-1">
+          <a
+            href={`https://instagram.com/${cafeConfig.instagram}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block overflow-hidden rounded-2xl bg-gradient-to-r from-[#1F1612] via-[#2C1E18] to-[#1F1612] p-4 text-white shadow-md border border-[#E8DFD5] transition-all hover:shadow-lg active:scale-[0.99]"
+          >
+            <div className="absolute top-0 right-0 -mr-6 -mt-6 w-32 h-32 bg-gradient-to-br from-[#E1306C]/40 to-[#FD1D1D]/20 rounded-full blur-xl pointer-events-none" />
+            
+            <div className="relative z-10 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3.5">
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#FD1D1D] via-[#E1306C] to-[#833AB4] text-white flex items-center justify-center shadow-md shrink-0 group-hover:scale-105 transition-transform">
+                  <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </div>
+                <div className="text-left">
+                  <div className="text-[11px] font-bold text-[#DDA15E] uppercase tracking-wider flex items-center gap-1">
+                    <Sparkles className="w-3 h-3 text-[#DDA15E]" />
+                    <span>Instagram</span>
+                  </div>
+                  <div className="text-sm sm:text-base font-extrabold text-[#FAF7F2]">
+                    @{cafeConfig.instagram}
+                  </div>
+                </div>
+              </div>
+
+              <div className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#FD1D1D] via-[#E1306C] to-[#833AB4] text-xs font-bold text-white shadow-sm shrink-0 group-hover:opacity-90 transition-opacity">
+                <span>{t('followUs')}</span>
+                <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </div>
+          </a>
+        </div>
+
       </div>
     </section>
   );
