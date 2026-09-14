@@ -4,12 +4,12 @@ export const CAFE_CONFIG: CafeConfig = {
   name: "Roast & Bloom",
   shortName: "R&B",
   tagline: {
-    tr: "Nitelikli Kahve & Butik Artisan Fırın",
-    en: "Specialty Coffee Roastery & Artisan Bakery"
+    tr: "Mutfak & Nitelikli Kahve & Butik Fırın",
+    en: "Artisan Kitchen, Specialty Coffee & Bakery"
   },
   description: {
-    tr: "Dünyanın dört bir yanından özenle seçilen mikro-lot kahve çekirdekleri ve günlük taş fırınımızda pişen taze lezzetler.",
-    en: "Carefully sourced micro-lot specialty coffees and freshly baked artisan delicacies crafted daily."
+    tr: "Usta şeflerimizden gurme ana yemekler, taş fırından taze lezzetler ve dünyanın en seçkin mikro-lot kahveleri.",
+    en: "Gourmet mains crafted by our chefs, stone-baked artisan bakery, and single-origin specialty coffees."
   },
   logo: "/images/logo.svg",
   coverImage: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80",
@@ -21,19 +21,30 @@ export const CAFE_CONFIG: CafeConfig = {
   phone: "+90 216 450 88 90",
   instagram: "roastandbloomcafe",
   workingHours: {
-    tr: "Hafta içi & Hafta sonu: 08:00 - 23:00",
-    en: "Mon - Sun: 08:00 AM - 11:00 PM"
+    tr: "Hafta içi & Hafta sonu: 08:00 - 23:30",
+    en: "Mon - Sun: 08:00 AM - 11:30 PM"
   },
   wifi: {
     ssid: "RoastBloom_Guest",
     password: "artisan_coffee",
     securityType: "WPA",
     helpNote: {
-      tr: "Misafir ağımız 100 Mbps fiber hızındadır. Şifreyi kopyalayabilir veya QR kodu okutabilirsiniz.",
-      en: "Our guest network is powered by 100 Mbps fiber. Copy the password or scan the QR code."
+      tr: "Misafir ağımız 100 Mbps fiber hızındadır.",
+      en: "Our guest network is powered by 100 Mbps fiber."
     }
   },
   features: [
+    {
+      icon: "Utensils",
+      title: {
+        tr: "Gurme Şef Mutfağı",
+        en: "Gourmet Chef Kitchen"
+      },
+      description: {
+        tr: "Taze malzemelerle hazırlanan ana yemekler, burgerler ve makarnalar.",
+        en: "Freshly prepared artisan mains, burgers, and hand-rolled pasta."
+      }
+    },
     {
       icon: "Coffee",
       title: {
@@ -41,19 +52,8 @@ export const CAFE_CONFIG: CafeConfig = {
         en: "100% Specialty Arabica"
       },
       description: {
-        tr: "Etik kaynaklı, SCA 86+ puanlı taze kavrum çekirdekler.",
-        en: "Ethically sourced, SCA 86+ rated freshly roasted beans."
-      }
-    },
-    {
-      icon: "Croissant",
-      title: {
-        tr: "Artisan Taş Fırın",
-        en: "Artisan Stone Bakery"
-      },
-      description: {
-        tr: "Gerçek Fransız tereyağı ve ekşi mayalı taze fırın ürünleri.",
-        en: "French butter pastries and slow-fermented sourdough."
+        tr: "SCA 86+ puanlı taze kavrum tek köken çekirdekler.",
+        en: "Ethically sourced SCA 86+ rated single-origin beans."
       }
     },
     {
@@ -64,7 +64,7 @@ export const CAFE_CONFIG: CafeConfig = {
       },
       description: {
         tr: "Rahat çalışma alanları ve kesintisiz internet erişimi.",
-        en: "Comfortable workspaces and uninterrupted connection."
+        en: "Comfortable workspace with complimentary high-speed internet."
       }
     }
   ]
@@ -72,44 +72,44 @@ export const CAFE_CONFIG: CafeConfig = {
 
 export const CATEGORIES: Category[] = [
   {
-    id: "cat-coffee",
-    slug: "kahveler",
+    id: "cat-mains",
+    slug: "ana-yemekler",
     name: {
-      tr: "Kahveler",
-      en: "Specialty Coffee"
+      tr: "Ana Yemekler",
+      en: "Main Courses"
     },
-    iconName: "Coffee",
+    iconName: "UtensilsCrossed",
     description: {
-      tr: "Espresso bazlı klasikler ve nitelikli demleme kahveler",
-      en: "Espresso classics and pour-over single-origin brews"
+      tr: "Şefimizin özel reçeteleriyle hazırlanan et, tavuk ve somon tabakları",
+      en: "Chef's signature grilled meats, salmon, and gourmet platters"
     },
     order: 1
   },
   {
-    id: "cat-cold-drinks",
-    slug: "soguk-icecekler",
+    id: "cat-burgers",
+    slug: "burger-sandvic",
     name: {
-      tr: "Soğuk İçecekler",
-      en: "Cold Drinks"
+      tr: "Burgerler & Dürümler",
+      en: "Burgers & Sandwiches"
     },
-    iconName: "GlassWater",
+    iconName: "Sandwich",
     description: {
-      tr: "Buzlu kahveler, ferahlatıcı mocktailler ve soğuk demlemeler",
-      en: "Iced coffees, craft mocktails and signature cold brews"
+      tr: "Brioche ekmeğinde smash burgerler ve çıtır tavuk seçenekleri",
+      en: "Brioche smash burgers and crispy buttermilk chicken sandwiches"
     },
     order: 2
   },
   {
-    id: "cat-tea",
-    slug: "caylar",
+    id: "cat-pastas",
+    slug: "makarna-bowllar",
     name: {
-      tr: "Çaylar",
-      en: "Artisan Teas"
+      tr: "Makarnalar & Salatalar",
+      en: "Pastas & Bowls"
     },
-    iconName: "CupSoda",
+    iconName: "UtensilsCrossed",
     description: {
-      tr: "Dünya çayları, bitki harmanları ve taze demlenmiş Türk çayı",
-      en: "Single-origin whole leaf teas and calming herbal infusions"
+      tr: "Taze soslu İtalyan makarnaları ve renkli besleyici kinoa bowlları",
+      en: "Artisan Italian pastas and fresh nutritious superfood bowls"
     },
     order: 3
   },
@@ -122,10 +122,38 @@ export const CATEGORIES: Category[] = [
     },
     iconName: "UtensilsCrossed",
     description: {
-      tr: "Ekşi mayalı tostlar, taze kaseler ve kruvasan sandviçler",
-      en: "Sourdough toasts, superfood bowls and stuffed croissants"
+      tr: "Ekşi mayalı tostlar, poşe yumurtalar ve zengin kruvasanlar",
+      en: "Sourdough toasts, organic poached eggs, and stuffed croissants"
     },
     order: 4
+  },
+  {
+    id: "cat-coffee",
+    slug: "kahveler",
+    name: {
+      tr: "Kahveler",
+      en: "Specialty Coffee"
+    },
+    iconName: "Coffee",
+    description: {
+      tr: "Espresso klasikleri, cortado, latte ve nitelikli V60 demlemeler",
+      en: "Espresso classics, flat white, cortado, and single-origin V60 brews"
+    },
+    order: 5
+  },
+  {
+    id: "cat-cold-drinks",
+    slug: "soguk-icecekler",
+    name: {
+      tr: "Soğuk İçecekler",
+      en: "Cold Drinks"
+    },
+    iconName: "GlassWater",
+    description: {
+      tr: "18 saat soğuk demlenmiş Cold Brew, ev yapımı limonatalar ve matcha",
+      en: "18h cold brews, handcrafted berry lemonades, and matcha lattes"
+    },
+    order: 6
   },
   {
     id: "cat-desserts",
@@ -136,29 +164,308 @@ export const CATEGORIES: Category[] = [
     },
     iconName: "CakeSlice",
     description: {
-      tr: "San Sebastian Cheesecake, tartlar ve artisan kurabiyeler",
-      en: "San Sebastian cheesecake, fruit tarts and artisan bakes"
+      tr: "San Sebastian Cheesecake, fıstıklı tartlar ve taze kruvasanlar",
+      en: "San Sebastian cheesecake, pistachio pastries, and fresh bakes"
     },
-    order: 5
-  },
-  {
-    id: "cat-snacks",
-    slug: "atistirmaliklar",
-    name: {
-      tr: "Atıştırmalıklar",
-      en: "Savory & Snacks"
-    },
-    iconName: "Sandwich",
-    description: {
-      tr: "Sıcak paniniler, paylaşımlık tabaklar ve gurme salatalar",
-      en: "Warm paninis, gourmet salads and artisanal finger foods"
-    },
-    order: 6
+    order: 7
   }
 ];
 
 export const PRODUCTS: Product[] = [
-  // --- KAHVELER / COFFEE ---
+  // ==========================================
+  // 1. ANA YEMEKLER / MAIN COURSES
+  // ==========================================
+  {
+    id: "prod-truffle-ribeye-steak",
+    categoryId: "cat-mains",
+    name: {
+      tr: "Trüflü Cafe de Paris Antrikot",
+      en: "Truffle Cafe de Paris Ribeye"
+    },
+    description: {
+      tr: "220g ızgara dana antrikot, özel Cafe de Paris tereyağı sosu, trüflü çıtır patates kızartması ve taze roka salatası ile.",
+      en: "220g grilled dry-aged ribeye steak, house Cafe de Paris butter sauce, truffle shoestring fries and wild arugula."
+    },
+    price: 495,
+    currency: "₺",
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+    tags: ["popular", "chef_special"],
+    calories: 780,
+    prepTime: "15-18",
+    ingredients: {
+      tr: ["220g Dana Antrikot", "Cafe de Paris Sos", "Taze Baharatlar", "Kızarmış Patates", "Parmesan"],
+      en: ["220g Beef Ribeye", "Cafe de Paris Butter", "Fresh Herbs", "Crispy Fries", "Aged Parmesan"]
+    },
+    allergens: {
+      tr: ["Süt ve Süt Ürünleri (Tereyağı/Krema)", "Hardal"],
+      en: ["Dairy (Butter/Cream)", "Mustard"]
+    },
+    isAvailable: true,
+    featured: true
+  },
+  {
+    id: "prod-grilled-salmon-plate",
+    categoryId: "cat-mains",
+    name: {
+      tr: "Fırınlanmış Norveç Somon & Kuşkonmaz",
+      en: "Glazed Norwegian Salmon & Asparagus"
+    },
+    description: {
+      tr: "Misket limonlu tereyağında mühürlenmiş taze somon fileto, kremalı patates püresi, ızgara bebek kuşkonmaz ve kapari sosu.",
+      en: "Pan-seared Norwegian salmon fillet, silky potato mousseline, grilled baby asparagus, and lemon caper drizzle."
+    },
+    price: 465,
+    currency: "₺",
+    image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80",
+    tags: ["popular", "gluten_free"],
+    calories: 620,
+    prepTime: "14-16",
+    ingredients: {
+      tr: ["Taze Norveç Somonu", "Bebek Kuşkonmaz", "Patates Püresi", "Kapari", "Sızma Zeytinyağı"],
+      en: ["Fresh Norwegian Salmon", "Baby Asparagus", "Potato Mousseline", "Capers", "Extra Virgin Olive Oil"]
+    },
+    allergens: {
+      tr: ["Balık", "Süt Ürünleri (Püre)"],
+      en: ["Fish", "Dairy"]
+    },
+    isAvailable: true,
+    featured: true
+  },
+  {
+    id: "prod-crispy-parmesan-schnitzel",
+    categoryId: "cat-mains",
+    name: {
+      tr: "Viyana Usulü Çıtır Tavuk Şinitzel",
+      en: "Crispy Viennese Chicken Schnitzel"
+    },
+    description: {
+      tr: "Altın sarısı panko kaplı yumuşak tavuk göğsü, ılık hardallı patates salatası, ızgara limon ve yaban mersini sosu.",
+      en: "Golden panko-crusted chicken breast, warm German mustard potato salad, grilled lemon and lingonberry jam."
+    },
+    price: 365,
+    currency: "₺",
+    image: "https://images.unsplash.com/photo-1599921841143-819025383852?auto=format&fit=crop&w=800&q=80",
+    tags: ["popular"],
+    calories: 710,
+    prepTime: "12-14",
+    ingredients: {
+      tr: ["Taze Tavuk Göğsü", "Panko Ekmek Kırıntısı", "Organik Yumurta", "Hardallı Patates Salatası"],
+      en: ["Tender Chicken Breast", "Japanese Panko", "Organic Eggs", "Mustard Potato Salad"]
+    },
+    allergens: {
+      tr: ["Gluten", "Yumurta", "Hardal"],
+      en: ["Gluten", "Eggs", "Mustard"]
+    },
+    isAvailable: true
+  },
+
+  // ==========================================
+  // 2. BURGERLER & SANDVİÇLER / BURGERS
+  // ==========================================
+  {
+    id: "prod-truffle-smash-burger",
+    categoryId: "cat-burgers",
+    name: {
+      tr: "Truffle Smash Çift Köfteli Burger",
+      en: "Double Truffle Smash Burger"
+    },
+    description: {
+      tr: "Taş fırın brioche ekmeğinde çift smash dana köftesi (180g), erimiş İngiliz çedarı, karamelize soğan, trüf mayonez ve patates kızartması.",
+      en: "Double dry-aged beef patties (180g) smashed crispy on brioche, melted cheddar, caramelized onions, truffle aioli and fries."
+    },
+    price: 345,
+    currency: "₺",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+    tags: ["popular", "chef_special"],
+    calories: 850,
+    prepTime: "10-12",
+    ingredients: {
+      tr: ["180g Dana Kıyması", "Tereyağlı Brioche", "İngiliz Çedar", "Trüf Mayonez", "Karamelize Soğan", "Baharatlı Patates"],
+      en: ["180g Aged Beef", "Brioche Bun", "Melted Cheddar", "Truffle Aioli", "Caramelized Onion", "Crispy Fries"]
+    },
+    allergens: {
+      tr: ["Gluten", "Süt ve Süt Ürünleri", "Yumurta", "Hardal"],
+      en: ["Gluten", "Dairy", "Eggs", "Mustard"]
+    },
+    isAvailable: true,
+    featured: true
+  },
+  {
+    id: "prod-crispy-chicken-burger",
+    categoryId: "cat-burgers",
+    name: {
+      tr: "Crispy Buttermilk Tavuk Burger",
+      en: "Crispy Buttermilk Chicken Burger"
+    },
+    description: {
+      tr: "24 saat marine edilmiş çıtır tavuk fileto, lahana coleslaw, acı-tatlı chipotle mayonez, salatalık turşusu ve patates cipsi.",
+      en: "24h buttermilk-marinated fried chicken thigh, crunchy purple coleslaw, smoky chipotle mayo, house pickles and fries."
+    },
+    price: 320,
+    currency: "₺",
+    image: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=800&q=80",
+    tags: ["new"],
+    calories: 780,
+    prepTime: "10-12",
+    ingredients: {
+      tr: ["Buttermilk Tavuk Fileto", "Brioche Ekmek", "Coleslaw Salata", "Chipotle Sos", "Kornişon Turşu"],
+      en: ["Buttermilk Fried Chicken", "Brioche Bun", "Purple Slaw", "Chipotle Aioli", "Dill Pickles"]
+    },
+    allergens: {
+      tr: ["Gluten", "Süt Ürünleri", "Yumurta"],
+      en: ["Gluten", "Dairy", "Eggs"]
+    },
+    isAvailable: true
+  },
+  {
+    id: "prod-smoked-turkey-melt",
+    categoryId: "cat-burgers",
+    name: {
+      tr: "Füme Hindi & Gravyer Brioche Melt",
+      en: "Smoked Turkey & Gruyere Melt"
+    },
+    description: {
+      tr: "Kızarmış tereyağlı brioche arasında fırınlanmış hindi füme, erimiş gravyer peyniri, ballı hardal ve karamelize soğan.",
+      en: "Toasted brioche, artisanal smoked turkey breast, melted gruyere cheese, honey mustard and sweet onions."
+    },
+    price: 265,
+    currency: "₺",
+    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80",
+    tags: ["popular"],
+    calories: 520,
+    prepTime: "7-8",
+    ingredients: {
+      tr: ["Brioche Ekmek", "Füme Hindi Göğsü", "Gravyer Peyniri", "Dijon Hardalı", "Karamelize Soğan"],
+      en: ["Brioche Bread", "Smoked Turkey Breast", "Gruyere Cheese", "Honey Dijon Mustard", "Caramelized Onions"]
+    },
+    allergens: {
+      tr: ["Gluten", "Süt ve Süt Ürünleri", "Hardal", "Yumurta"],
+      en: ["Gluten", "Dairy", "Mustard", "Eggs"]
+    },
+    isAvailable: true
+  },
+
+  // ==========================================
+  // 3. MAKARNALAR & KASELER / PASTAS & BOWLS
+  // ==========================================
+  {
+    id: "prod-truffle-fettuccine",
+    categoryId: "cat-pastas",
+    name: {
+      tr: "Trüf Kremalı & Mantarlı Fettuccine",
+      en: "Truffle & Wild Mushroom Fettuccine"
+    },
+    description: {
+      tr: "El yapımı taze yumurtalı fettuccine makarna, porçini ve kestane mantarları, taze trüf yağı, krema ve 24 aylık Parmigiano Reggiano.",
+      en: "Handmade egg fettuccine tossed with porcini & chestnut mushrooms, white truffle oil, light cream and aged Parmigiano Reggiano."
+    },
+    price: 335,
+    currency: "₺",
+    image: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=800&q=80",
+    tags: ["popular", "vegetarian", "chef_special"],
+    calories: 610,
+    prepTime: "10-12",
+    ingredients: {
+      tr: ["Taze Fettuccine Hamuru", "Porçini Mantarı", "Trüf Kreması", "Parmigiano Reggiano", "Taze Fesleğen"],
+      en: ["Fresh Fettuccine", "Wild Porcini", "Truffle Cream", "Parmigiano Reggiano", "Fresh Basil"]
+    },
+    allergens: {
+      tr: ["Gluten (Buğday)", "Süt Ürünleri (Krema/Peynir)", "Yumurta"],
+      en: ["Gluten", "Dairy", "Eggs"]
+    },
+    isAvailable: true,
+    featured: true
+  },
+  {
+    id: "prod-halloumi-quinoa-bowl",
+    categoryId: "cat-pastas",
+    name: {
+      tr: "Izgara Hellimli Renkli Kinoa Kasesi",
+      en: "Grilled Halloumi & Tricolor Quinoa Bowl"
+    },
+    description: {
+      tr: "Kızarmış Kıbrıs hellimi, organik renkli kinoa, bebek roka, avokado dilimleri, kurutulmuş domates, kavrulmuş ceviz ve nar ekşili zeytinyağı.",
+      en: "Pan-seared Cyprus halloumi, tricolor quinoa, baby arugula, Hass avocado, sun-dried tomatoes, roasted walnuts, pomegranate vinaigrette."
+    },
+    price: 285,
+    currency: "₺",
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80",
+    tags: ["vegetarian", "gluten_free"],
+    calories: 430,
+    prepTime: "7-8",
+    ingredients: {
+      tr: ["Kıbrıs Hellim Peyniri", "Renkli Kinoa", "Bebek Roka", "Avokado", "Ceviz", "Nar Ekşisi & Sızma Zeytinyağı"],
+      en: ["Cyprus Halloumi", "Tricolor Quinoa", "Baby Arugula", "Avocado", "Walnuts", "Pomegranate Dressing"]
+    },
+    allergens: {
+      tr: ["Süt Ürünleri", "Ceviz (Sert Kabuklu Yemiş)"],
+      en: ["Dairy", "Walnuts (Tree Nuts)"]
+    },
+    isAvailable: true
+  },
+
+  // ==========================================
+  // 4. KAHVALTI & BRUNCH / BREAKFAST
+  // ==========================================
+  {
+    id: "prod-avocado-sourdough",
+    categoryId: "cat-breakfast",
+    name: {
+      tr: "Ekşi Mayalı Avokado & Poşe Yumurta",
+      en: "Avocado Sourdough & Poached Egg"
+    },
+    description: {
+      tr: "Kızarmış artisan ekşi mayalı ekmek, ezilmiş misket limonlu avokado, organik poşe yumurta, taze kişniş ve çörek otu.",
+      en: "Toasted artisan sourdough, zesty lime-smashed avocado, organic poached egg, chili flakes and microgreens."
+    },
+    price: 265,
+    currency: "₺",
+    image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80",
+    tags: ["popular", "vegetarian"],
+    calories: 420,
+    prepTime: "8-10",
+    ingredients: {
+      tr: ["Doğal Ekşi Mayalı Ekmek", "Olgun Avokado", "Organik Köy Yumurtası", "Sızma Zeytinyağı"],
+      en: ["Stoneground Sourdough", "Hass Avocado", "Organic Farm Egg", "Extra Virgin Olive Oil"]
+    },
+    allergens: {
+      tr: ["Gluten (Ekmek)", "Yumurta"],
+      en: ["Gluten (Wheat)", "Eggs"]
+    },
+    isAvailable: true,
+    featured: true
+  },
+  {
+    id: "prod-truffle-croissant",
+    categoryId: "cat-breakfast",
+    name: {
+      tr: "Trüflü Çırpılmış Yumurtalı Kruvasan",
+      en: "Truffle Scrambled Egg Croissant"
+    },
+    description: {
+      tr: "Tereyağlı çıtır fırın kruvasanı içinde krema kıvamında trüf yağlı çırpılmış yumurta ve taze frenk soğanı.",
+      en: "Crispy all-butter bakery croissant filled with creamy truffle scrambled eggs and garden chives."
+    },
+    price: 285,
+    currency: "₺",
+    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+    tags: ["popular", "chef_special"],
+    calories: 540,
+    prepTime: "8-10",
+    ingredients: {
+      tr: ["Fransız Tereyağlı Kruvasan", "Köy Yumurtası", "Doğal Trüf Yağı", "Eski Kaşar Peyniri", "Frenk Soğanı"],
+      en: ["French Butter Croissant", "Farm Eggs", "White Truffle Oil", "Aged Cheese", "Chives"]
+    },
+    allergens: {
+      tr: ["Gluten", "Süt Ürünleri", "Yumurta"],
+      en: ["Gluten", "Dairy", "Eggs"]
+    },
+    isAvailable: true
+  },
+
+  // ==========================================
+  // 5. KAHVELER / COFFEE
+  // ==========================================
   {
     id: "prod-cortado",
     categoryId: "cat-coffee",
@@ -185,18 +492,7 @@ export const PRODUCTS: Product[] = [
       en: ["Dairy (Lactose-free and Oat milk options available)"]
     },
     isAvailable: true,
-    featured: true,
-    options: [
-      {
-        title: { tr: "Süt Tercihi", en: "Milk Choice" },
-        choices: [
-          { name: { tr: "Standart Tam Yağlı", en: "Whole Milk" }, priceDiff: 0 },
-          { name: { tr: "Yulaf Sütü (Oat Milk)", en: "Oat Milk" }, priceDiff: 20 },
-          { name: { tr: "Badem Sütü", en: "Almond Milk" }, priceDiff: 25 },
-          { name: { tr: "Laktozsuz Süt", en: "Lactose-Free Milk" }, priceDiff: 10 }
-        ]
-      }
-    ]
+    featured: true
   },
   {
     id: "prod-spanish-latte",
@@ -223,8 +519,7 @@ export const PRODUCTS: Product[] = [
       tr: ["Süt ve Süt Ürünleri (Laktoz)"],
       en: ["Dairy (Lactose)"]
     },
-    isAvailable: true,
-    featured: true
+    isAvailable: true
   },
   {
     id: "prod-v60-pourover",
@@ -253,35 +548,10 @@ export const PRODUCTS: Product[] = [
     },
     isAvailable: true
   },
-  {
-    id: "prod-flat-white",
-    categoryId: "cat-coffee",
-    name: {
-      tr: "Flat White",
-      en: "Flat White"
-    },
-    description: {
-      tr: "İnce kadifemsi mikro köpükle birleşen yoğun çift shot espresso lezzeti.",
-      en: "Double shot espresso folded into a velvety thin microfoam layer."
-    },
-    price: 145,
-    currency: "₺",
-    image: "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&w=800&q=80",
-    tags: ["popular"],
-    calories: 120,
-    prepTime: "3-4",
-    ingredients: {
-      tr: ["Çift Shot Espresso", "Buharlanmış İnce Süt"],
-      en: ["Double Shot Espresso", "Steamed Microfoam Milk"]
-    },
-    allergens: {
-      tr: ["Süt ve Süt Ürünleri"],
-      en: ["Dairy"]
-    },
-    isAvailable: true
-  },
 
-  // --- SOĞUK İÇECEKLER / COLD DRINKS ---
+  // ==========================================
+  // 6. SOĞUK İÇECEKLER / COLD DRINKS
+  // ==========================================
   {
     id: "prod-cold-brew-reserve",
     categoryId: "cat-cold-drinks",
@@ -336,175 +606,10 @@ export const PRODUCTS: Product[] = [
     },
     isAvailable: true
   },
-  {
-    id: "prod-hibiscus-lemonade",
-    categoryId: "cat-cold-drinks",
-    name: {
-      tr: "Hibiscus Berry Artisan Limonata",
-      en: "Hibiscus Berry Artisan Lemonade"
-    },
-    description: {
-      tr: "Taze sıkılmış Bodrum limonu, ev yapımı hibiscus şurubu, taze nane ve yaban mersini taneleri.",
-      en: "Freshly squeezed Bodrum lemons, house-crafted hibiscus cordial, fresh mint, and wild blueberries."
-    },
-    price: 145,
-    currency: "₺",
-    image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80",
-    tags: ["new", "vegan"],
-    calories: 110,
-    prepTime: "3",
-    ingredients: {
-      tr: ["Taze Limon Suyu", "Hibiscus Çiçeği Özü", "Nane", "Yaban Mersini", "Maden Suyu"],
-      en: ["Fresh Lemon Juice", "Hibiscus Infusion", "Fresh Mint", "Blueberries", "Sparkling Water"]
-    },
-    allergens: {
-      tr: [],
-      en: []
-    },
-    isAvailable: true
-  },
 
-  // --- ÇAYLAR / ARTISAN TEAS ---
-  {
-    id: "prod-earl-grey-reserve",
-    categoryId: "cat-tea",
-    name: {
-      tr: "Seylan Bergamot Reserve Çay",
-      en: "Imperial Earl Grey Reserve"
-    },
-    description: {
-      tr: "Sri Lanka yüksek rakım tam yaprak siyah çay ve doğal İtalyan bergamot yağı esansı.",
-      en: "High-grown full-leaf Ceylon black tea scented with cold-pressed Italian bergamot essential oil."
-    },
-    price: 110,
-    currency: "₺",
-    image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80",
-    tags: [],
-    calories: 2,
-    prepTime: "4-5",
-    ingredients: {
-      tr: ["Tam Yaprak Seylan Siyah Çay", "Doğal Bergamot"],
-      en: ["Whole Leaf Ceylon Black Tea", "Natural Bergamot Oil"]
-    },
-    allergens: {
-      tr: [],
-      en: []
-    },
-    isAvailable: true
-  },
-  {
-    id: "prod-relaxing-botanical-tea",
-    categoryId: "cat-tea",
-    name: {
-      tr: "Rooibos Vanilla & Papatya Harmanı",
-      en: "Rooibos Vanilla & Chamomile Blend"
-    },
-    description: {
-      tr: "Kafeinsiz Güney Afrika kızıl çayı, Mayıs papatyası, lavanta çiçekleri ve gerçek vanilya çubuğu.",
-      en: "Caffeine-free South African red rooibos, gentle chamomile blossoms, lavender, and Madagascar vanilla."
-    },
-    price: 125,
-    currency: "₺",
-    image: "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&w=800&q=80",
-    tags: ["vegetarian", "vegan"],
-    calories: 0,
-    prepTime: "5",
-    ingredients: {
-      tr: ["Kızıl Rooibos", "Alman Papatyası", "Lavanta", "Doğal Vanilya"],
-      en: ["Red Rooibos", "German Chamomile", "French Lavender", "Vanilla Pod"]
-    },
-    allergens: {
-      tr: [],
-      en: []
-    },
-    isAvailable: true
-  },
-
-  // --- KAHVALTI & BRUNCH / BREAKFAST ---
-  {
-    id: "prod-avocado-sourdough",
-    categoryId: "cat-breakfast",
-    name: {
-      tr: "Ekşi Mayalı Avokado & Poşe Yumurta",
-      en: "Avocado Sourdough & Poached Egg"
-    },
-    description: {
-      tr: "Kızarmış artisan ekşi mayalı ekmek, ezilmiş misket limonlu avokado, organik poşe yumurta, taze kişniş ve çörek otu.",
-      en: "Toasted artisan sourdough, zesty lime-smashed avocado, organic poached egg, chili flakes and microgreens."
-    },
-    price: 265,
-    currency: "₺",
-    image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80",
-    tags: ["popular", "vegetarian"],
-    calories: 420,
-    prepTime: "8-10",
-    ingredients: {
-      tr: ["Doğal Ekşi Mayalı Ekmek", "Olgun Avokado", "Organik Köy Yumurtası", "Sızma Zeytinyağı", "Keten Tohumu"],
-      en: ["Stoneground Sourdough", "Hass Avocado", "Organic Farm Egg", "Extra Virgin Olive Oil", "Flaxseed"]
-    },
-    allergens: {
-      tr: ["Gluten (Ekmek)", "Yumurta", "Susam/Tohum İzleri"],
-      en: ["Gluten (Wheat)", "Eggs", "Sesame / Seeds"]
-    },
-    isAvailable: true,
-    featured: true
-  },
-  {
-    id: "prod-truffle-croissant",
-    categoryId: "cat-breakfast",
-    name: {
-      tr: "Trüflü Çırpılmış Yumurtalı Kruvasan",
-      en: "Truffle Scrambled Egg Croissant"
-    },
-    description: {
-      tr: "Her sabah fırınımızda açılan tereyağlı çıtır kruvasan içinde krema kıvamında trüf yağlı çırpılmış yumurta ve taze frenk soğanı.",
-      en: "Crispy all-butter bakery croissant filled with creamy truffle scrambled eggs and garden chives."
-    },
-    price: 285,
-    currency: "₺",
-    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
-    tags: ["popular", "chef_special"],
-    calories: 540,
-    prepTime: "8-10",
-    ingredients: {
-      tr: ["Fransız Tereyağlı Kruvasan", "Köy Yumurtası", "Doğal Trüf Yağı", "Eski Kaşar Peyniri", "Frenk Soğanı"],
-      en: ["French Butter Croissant", "Farm Eggs", "White Truffle Oil", "Aged Kashar Cheese", "Chives"]
-    },
-    allergens: {
-      tr: ["Gluten", "Süt Ürünleri", "Yumurta"],
-      en: ["Gluten (Wheat)", "Dairy", "Eggs"]
-    },
-    isAvailable: true
-  },
-  {
-    id: "prod-acai-superfood-bowl",
-    categoryId: "cat-breakfast",
-    name: {
-      tr: "Amazon Acai Superfood Kasesi",
-      en: "Amazonian Acai Superfood Bowl"
-    },
-    description: {
-      tr: "Organik acai püresi, muz, badem sütü, ev yapımı fırınlanmış granola, taze çilek, böğürtlen ve chia tohumu.",
-      en: "Organic wild acai blend, banana, almond milk, topped with toasted house granola, fresh berries and chia."
-    },
-    price: 240,
-    currency: "₺",
-    image: "https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=800&q=80",
-    tags: ["new", "vegan", "vegetarian"],
-    calories: 360,
-    prepTime: "5-6",
-    ingredients: {
-      tr: ["Dondurulmuş Acai Meyvesi", "Muz", "Badem Sütü", "Yulaf Granola", "Taze Meyveler", "Hindistan Cevizi Cipsi"],
-      en: ["Pure Acai Pulp", "Banana", "Almond Milk", "Oat Granola", "Fresh Berries", "Coconut Flakes"]
-    },
-    allergens: {
-      tr: ["Sert Kabuklu Yemişler (Badem)", "Yulaf (Gluten)"],
-      en: ["Tree Nuts (Almonds)", "Oats"]
-    },
-    isAvailable: true
-  },
-
-  // --- TATLILAR & FIRIN / DESSERTS ---
+  // ==========================================
+  // 7. TATLILAR & FIRIN / DESSERTS
+  // ==========================================
   {
     id: "prod-san-sebastian",
     categoryId: "cat-desserts",
@@ -557,89 +662,6 @@ export const PRODUCTS: Product[] = [
     allergens: {
       tr: ["Antep Fıstığı (Sert Kabuklu Yemiş)", "Gluten", "Süt Ürünleri", "Yumurta"],
       en: ["Pistachios (Tree Nuts)", "Gluten", "Dairy", "Eggs"]
-    },
-    isAvailable: true
-  },
-  {
-    id: "prod-almond-croissant",
-    categoryId: "cat-desserts",
-    name: {
-      tr: "Badem Kremalı Kruvasan",
-      en: "Twice-Baked Almond Croissant"
-    },
-    description: {
-      tr: "Portakal çiçeği şurubu ile ıslatılmış, içi ve üzeri frangipane badem kreması ve file bademle fırınlanmış kruvasan.",
-      en: "Twice-baked butter croissant steeped with orange blossom syrup, packed with rich frangipane almond cream."
-    },
-    price: 175,
-    currency: "₺",
-    image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80",
-    tags: ["vegetarian"],
-    calories: 460,
-    prepTime: "2",
-    ingredients: {
-      tr: ["Tereyağlı Kruvasan", "Frangipane Badem Kreması", "File Badem", "Pudra Şekeri"],
-      en: ["Butter Croissant", "Frangipane Almond Cream", "Flaked Almonds", "Icing Sugar"]
-    },
-    allergens: {
-      tr: ["Badem (Sert Kabuklu Yemiş)", "Gluten", "Süt Ürünleri", "Yumurta"],
-      en: ["Almonds (Tree Nuts)", "Gluten", "Dairy", "Eggs"]
-    },
-    isAvailable: true
-  },
-
-  // --- ATIŞTIRMALIKLAR / SAVORY & SNACKS ---
-  {
-    id: "prod-smoked-turkey-melt",
-    categoryId: "cat-snacks",
-    name: {
-      tr: "Füme Hindi & Gravyer Brioche Melt",
-      en: "Smoked Turkey & Gruyere Brioche Melt"
-    },
-    description: {
-      tr: "Tereyağlı brioche ekmeği arasında fırınlanmış hindi füme, erimiş gravyer peyniri, ballı hardal ve karamelize soğan.",
-      en: "Golden toasted buttery brioche, artisanal smoked turkey breast, melted gruyere, honey Dijon, and caramelized onions."
-    },
-    price: 245,
-    currency: "₺",
-    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80",
-    tags: ["popular"],
-    calories: 520,
-    prepTime: "7-8",
-    ingredients: {
-      tr: ["Brioche Ekmek", "Füme Hindi Göğsü", "Gravyer Peyniri", "Dijon Hardalı", "Karamelize Soğan"],
-      en: ["Brioche Bread", "Smoked Turkey Breast", "Gruyere Cheese", "Honey Dijon Mustard", "Caramelized Onions"]
-    },
-    allergens: {
-      tr: ["Gluten", "Süt ve Süt Ürünleri", "Hardal", "Yumurta"],
-      en: ["Gluten", "Dairy", "Mustard", "Eggs"]
-    },
-    isAvailable: true
-  },
-  {
-    id: "prod-halloumi-quinoa-bowl",
-    categoryId: "cat-snacks",
-    name: {
-      tr: "Izgara Hellimli Kinoa & Avokado Kasesi",
-      en: "Grilled Halloumi & Quinoa Salad Bowl"
-    },
-    description: {
-      tr: "Kızarmış Kıbrıs hellimi, organik renkli kinoa, bebek roka, kurutulmuş domates, ceviz ve nar ekşili zeytinyağı sosu.",
-      en: "Crispy pan-seared Cyprus halloumi, tricolor quinoa, baby arugula, sun-dried tomatoes, roasted walnuts, pomegranate dressing."
-    },
-    price: 255,
-    currency: "₺",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80",
-    tags: ["vegetarian", "gluten_free"],
-    calories: 390,
-    prepTime: "6-8",
-    ingredients: {
-      tr: ["Kıbrıs Hellim Peyniri", "Renkli Kinoa", "Bebek Roka", "Ceviz", "Nar Ekşisi & Sızma Zeytinyağı"],
-      en: ["Cyprus Halloumi Cheese", "Tri-color Quinoa", "Baby Arugula", "Walnuts", "Extra Virgin Olive Oil & Pomegranate"]
-    },
-    allergens: {
-      tr: ["Süt Ürünleri", "Ceviz (Sert Kabuklu Yemiş)"],
-      en: ["Dairy", "Walnuts (Tree Nuts)"]
     },
     isAvailable: true
   }
