@@ -8,8 +8,6 @@ import {
   Wifi, 
   Copy, 
   Check, 
-  Eye, 
-  EyeOff, 
   X, 
   QrCode, 
   Smartphone, 
@@ -29,7 +27,6 @@ export const WifiModal: React.FC<WifiModalProps> = ({ isOpen, onClose, wifiConfi
   const { t, language } = useLanguage();
   const [copiedPassword, setCopiedPassword] = useState(false);
   const [copiedSSID, setCopiedSSID] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState<'qr' | 'manual' | 'guide'>('qr');
   const [deviceTab, setDeviceTab] = useState<'ios' | 'android' | 'manual'>('ios');
 
@@ -136,19 +133,9 @@ export const WifiModal: React.FC<WifiModalProps> = ({ isOpen, onClose, wifiConfi
                 {t('wifiPassword')}
               </div>
               <div className="flex items-center justify-between bg-[#F8F4EE] rounded-xl px-3.5 py-2.5 border border-[#E8DFD5]">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono font-bold text-[#1F1612] text-base tracking-wider select-all">
-                    {showPassword ? wifiConfig.password : '••••••••••••'}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="p-1 text-[#8C7A6E] hover:text-[#1F1612] transition-colors"
-                    title={showPassword ? t('wifiHidePassword') : t('wifiShowPassword')}
-                  >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
-                </div>
+                <span className="font-mono font-bold text-[#1F1612] text-base tracking-wide select-all">
+                  {wifiConfig.password}
+                </span>
                 <button
                   type="button"
                   onClick={handleCopyPassword}
