@@ -12,7 +12,6 @@ import {
   Utensils, 
   Coffee,
   SearchX, 
-  Sparkles, 
   Layers,
   ArrowLeft,
   LayoutGrid
@@ -27,6 +26,33 @@ interface MenuSectionProps {
 
 export type MenuDepartment = 'all' | 'food' | 'drinks' | 'hub';
 
+// Robust category department classifier supporting both Supabase and Local datasets
+export function getCategorySection(cat: Category): 'food' | 'drinks' {
+  if (cat.section === 'drinks' || cat.section === 'food') {
+    return cat.section;
+  }
+  const text = `${cat.id} ${cat.slug || ''} ${cat.name?.tr || ''} ${cat.name?.en || ''}`.toLowerCase();
+  if (
+    text.includes('coffee') ||
+    text.includes('kahve') ||
+    text.includes('drink') ||
+    text.includes('icecek') ||
+    text.includes('i̇çecek') ||
+    text.includes('tea') ||
+    text.includes('cay') ||
+    text.includes('çay') ||
+    text.includes('cocktail') ||
+    text.includes('mocktail') ||
+    text.includes('soguk') ||
+    text.includes('soğuk') ||
+    text.includes('sicak') ||
+    text.includes('sıcak')
+  ) {
+    return 'drinks';
+  }
+  return 'food';
+}
+
 export const MenuSection: React.FC<MenuSectionProps> = ({
   categories,
   products,
@@ -40,25 +66,26 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  // Split categories by department
-  const foodCategories = useMemo(() => categories.filter(c => c.section === 'food' || !c.section), [categories]);
-  const drinksCategories = useMemo(() => categories.filter(c => c.section === 'drinks'), [categories]);
+  // Split categories by department using robust classifier
+  const foodCategories = useMemo(() => categories.filter(c => getCategorySection(c) === 'food'), [categories]);
+  const drinksCategories = useMemo(() => categories.filter(c => getCategorySection(c) === 'drinks'), [categories]);
 
-  // Counts for department cards
+  // Sets of category IDs for fast membership testing
   const foodCategoryIds = useMemo(() => new Set(foodCategories.map(c => c.id)), [foodCategories]);
   const drinksCategoryIds = useMemo(() => new Set(drinksCategories.map(c => c.id)), [drinksCategories]);
 
+  // Product counts per department
   const foodProductsCount = useMemo(() => products.filter(p => foodCategoryIds.has(p.categoryId)).length, [products, foodCategoryIds]);
   const drinksProductsCount = useMemo(() => products.filter(p => drinksCategoryIds.has(p.categoryId)).length, [products, drinksCategoryIds]);
 
-  // Visible categories based on selected department
+  // Visible subcategories based on current department
   const visibleCategories = useMemo(() => {
     if (activeDepartment === 'food') return foodCategories;
     if (activeDepartment === 'drinks') return drinksCategories;
     return categories;
   }, [activeDepartment, foodCategories, drinksCategories, categories]);
 
-  // Filter products by department, category, and search query
+  // Filter products by active department, selected category, and search query
   const filteredProducts = useMemo(() => {
     return products.filter((prod) => {
       // Department filter
@@ -69,7 +96,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
         return false;
       }
 
-      // Category filter
+      // Subcategory filter
       if (selectedCategoryId !== 'all' && prod.categoryId !== selectedCategoryId) {
         return false;
       }
@@ -90,7 +117,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
     });
   }, [products, activeDepartment, selectedCategoryId, searchQuery, foodCategoryIds, drinksCategoryIds]);
 
-  // Group products by category when in 'all' view with no search
+  // Group products by category when in 'all' subcategory view with no search
   const groupedProducts = useMemo(() => {
     if (selectedCategoryId !== 'all' || searchQuery.trim() !== '') {
       return null;
@@ -179,7 +206,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
               setActiveDepartment('all');
               setSelectedCategoryId('all');
             }}
-            className={`hidden sm:flex py-2 px-3 rounded-xl items-center justify-center gap-1.5 transition-all ${
+            className={`py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all ${
               activeDepartment === 'all'
                 ? 'bg-[#1F1612] text-white shadow-xs'
                 : 'text-[#6B5E55] hover:text-[#1F1612]'
@@ -232,7 +259,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
       {/* VIEW B: CATEGORIES & PRODUCT LISTING (When Food / Drinks / All is Selected or Searching) */}
       {(activeDepartment !== 'hub' || searchQuery.trim() !== '') && (
         <div className="animate-fade-in">
-          {/* Sticky Category Bar for Subcategories */}
+          {/* Sticky Category Bar for Subcategories of active department */}
           <CategoryBar
             categories={visibleCategories}
             selectedCategoryId={selectedCategoryId}
@@ -294,6 +321,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
                   onClick={() => {
                     setSearchQuery('');
                     setSelectedCategoryId('all');
+                    setActiveDepartment('all');
                   }}
                   className="px-4 py-2 rounded-xl bg-[#1F1612] text-white text-xs font-semibold hover:bg-[#34241C]"
                 >
