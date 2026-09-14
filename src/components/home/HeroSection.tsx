@@ -7,7 +7,6 @@ import {
   Coffee, 
   Wifi, 
   Sparkles, 
-  Clock, 
   ArrowRight
 } from 'lucide-react';
 
@@ -80,7 +79,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </p>
           </div>
 
-          {/* Primary & Secondary Action Buttons (The Only Main Buttons) */}
+          {/* Primary & Secondary Action Buttons */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
             {/* Primary Action: Menüyü Gör */}
             <button
@@ -103,12 +102,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <span>{t('connectWifi')}</span>
             </button>
           </div>
-
-          {/* Working Hours */}
-          <div className="pt-2 flex items-center justify-center gap-2 text-xs text-[#8C7A6E]">
-            <Clock className="w-3.5 h-3.5 text-[#C46835]" />
-            <span>{getLocalized(cafeConfig.workingHours)}</span>
-          </div>
         </div>
 
         {/* Prominent High-End Instagram Showcase Card */}
@@ -129,9 +122,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   </svg>
                 </div>
                 <div className="text-left">
-                  <div className="text-[11px] font-bold text-[#DDA15E] uppercase tracking-wider flex items-center gap-1">
-                    <Sparkles className="w-3 h-3 text-[#DDA15E]" />
-                    <span>Instagram</span>
+                  <div className="text-[11px] font-bold text-[#DDA15E] uppercase tracking-wider">
+                    Instagram'da Bizi Takip Edin
                   </div>
                   <div className="text-sm sm:text-base font-extrabold text-[#FAF7F2]">
                     @{cafeConfig.instagram}
