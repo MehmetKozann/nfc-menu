@@ -52,6 +52,17 @@ create table if not exists cafe_config (
 );
 
 -- RLS Güvenlik İzinleri (Tekrar Çalıştırılabilir)
+alter table categories add column if not exists section text default 'food';
+alter table categories add column if not exists image text;
+
+alter table products add column if not exists featured boolean default false;
+alter table products add column if not exists calories integer;
+alter table products add column if not exists prep_time text;
+alter table products add column if not exists ingredients jsonb;
+alter table products add column if not exists allergens jsonb;
+alter table products add column if not exists options jsonb;
+alter table products add column if not exists is_available boolean default true;
+
 alter table categories enable row level security;
 alter table products enable row level security;
 alter table cafe_config enable row level security;
