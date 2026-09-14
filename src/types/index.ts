@@ -48,6 +48,8 @@ export interface Category {
   iconName: string;
   description?: LocalizedString;
   order: number;
+  section?: 'food' | 'drinks';
+  image?: string;
 }
 
 export interface WifiConfig {

@@ -75,21 +75,23 @@ export const CATEGORIES: Category[] = [
     id: "cat-mains",
     slug: "ana-yemekler",
     name: {
-      tr: "Ana Yemekler",
-      en: "Main Courses"
+      tr: "Ana Yemekler & Izgaralar",
+      en: "Main Courses & Steaks"
     },
     iconName: "UtensilsCrossed",
     description: {
       tr: "Şefimizin özel reçeteleriyle hazırlanan et, tavuk ve somon tabakları",
       en: "Chef's signature grilled meats, salmon, and gourmet platters"
     },
-    order: 1
+    order: 1,
+    section: "food",
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "cat-burgers",
     slug: "burger-sandvic",
     name: {
-      tr: "Burgerler & Dürümler",
+      tr: "Burgerler & Sandviçler",
       en: "Burgers & Sandwiches"
     },
     iconName: "Sandwich",
@@ -97,7 +99,9 @@ export const CATEGORIES: Category[] = [
       tr: "Brioche ekmeğinde smash burgerler ve çıtır tavuk seçenekleri",
       en: "Brioche smash burgers and crispy buttermilk chicken sandwiches"
     },
-    order: 2
+    order: 2,
+    section: "food",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "cat-pastas",
@@ -111,7 +115,9 @@ export const CATEGORIES: Category[] = [
       tr: "Taze soslu İtalyan makarnaları ve renkli besleyici kinoa bowlları",
       en: "Artisan Italian pastas and fresh nutritious superfood bowls"
     },
-    order: 3
+    order: 3,
+    section: "food",
+    image: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "cat-breakfast",
@@ -125,41 +131,15 @@ export const CATEGORIES: Category[] = [
       tr: "Ekşi mayalı tostlar, poşe yumurtalar ve zengin kruvasanlar",
       en: "Sourdough toasts, organic poached eggs, and stuffed croissants"
     },
-    order: 4
-  },
-  {
-    id: "cat-coffee",
-    slug: "kahveler",
-    name: {
-      tr: "Kahveler",
-      en: "Specialty Coffee"
-    },
-    iconName: "Coffee",
-    description: {
-      tr: "Espresso klasikleri, cortado, latte ve nitelikli V60 demlemeler",
-      en: "Espresso classics, flat white, cortado, and single-origin V60 brews"
-    },
-    order: 5
-  },
-  {
-    id: "cat-cold-drinks",
-    slug: "soguk-icecekler",
-    name: {
-      tr: "Soğuk İçecekler",
-      en: "Cold Drinks"
-    },
-    iconName: "GlassWater",
-    description: {
-      tr: "18 saat soğuk demlenmiş Cold Brew, ev yapımı limonatalar ve matcha",
-      en: "18h cold brews, handcrafted berry lemonades, and matcha lattes"
-    },
-    order: 6
+    order: 4,
+    section: "food",
+    image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "cat-desserts",
     slug: "tatlilar",
     name: {
-      tr: "Tatlılar & Fırın",
+      tr: "Tatlılar & Butik Fırın",
       en: "Bakery & Desserts"
     },
     iconName: "CakeSlice",
@@ -167,7 +147,41 @@ export const CATEGORIES: Category[] = [
       tr: "San Sebastian Cheesecake, fıstıklı tartlar ve taze kruvasanlar",
       en: "San Sebastian cheesecake, pistachio pastries, and fresh bakes"
     },
-    order: 7
+    order: 5,
+    section: "food",
+    image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: "cat-coffee",
+    slug: "kahveler",
+    name: {
+      tr: "Sıcak Kahveler & Çaylar",
+      en: "Specialty Coffee & Tea"
+    },
+    iconName: "Coffee",
+    description: {
+      tr: "Espresso klasikleri, cortado, latte ve nitelikli V60 demlemeler",
+      en: "Espresso classics, flat white, cortado, and single-origin V60 brews"
+    },
+    order: 6,
+    section: "drinks",
+    image: "https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: "cat-cold-drinks",
+    slug: "soguk-icecekler",
+    name: {
+      tr: "Soğuk İçecekler & Mocktail",
+      en: "Cold Drinks & Mocktails"
+    },
+    iconName: "GlassWater",
+    description: {
+      tr: "18 saat soğuk demlenmiş Cold Brew, ev yapımı limonatalar ve matcha",
+      en: "18h cold brews, handcrafted berry lemonades, and matcha lattes"
+    },
+    order: 7,
+    section: "drinks",
+    image: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
