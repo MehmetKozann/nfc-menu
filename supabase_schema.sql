@@ -9,6 +9,8 @@ create table if not exists categories (
   icon_name text not null,
   description jsonb,
   "order" integer default 1,
+  section text default 'food',
+  image text,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
@@ -49,12 +51,18 @@ create table if not exists cafe_config (
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
+-- RLS Güvenlik İzinleri (Tekrar Çalıştırılabilir)
 alter table categories enable row level security;
 alter table products enable row level security;
 alter table cafe_config enable row level security;
 
+drop policy if exists "Allow public read access on categories" on categories;
 create policy "Allow public read access on categories" on categories for select using (true);
+
+drop policy if exists "Allow public read access on products" on products;
 create policy "Allow public read access on products" on products for select using (true);
+
+drop policy if exists "Allow public read access on cafe_config" on cafe_config;
 create policy "Allow public read access on cafe_config" on cafe_config for select using (true);
 
 -- ==============================================================================
@@ -78,22 +86,32 @@ values (
   '{"ssid": "RoastBloom_Guest", "password": "artisan_coffee", "securityType": "WPA", "helpNote": {"tr": "Misafir ağımız 100 Mbps fiber hızındadır.", "en": "Our guest network is powered by 100 Mbps fiber."}}',
   '[{"icon": "Utensils", "title": {"tr": "Gurme Şef Mutfağı", "en": "Gourmet Chef Kitchen"}, "description": {"tr": "Taze malzemelerle hazırlanan ana yemekler, burgerler ve makarnalar.", "en": "Freshly prepared artisan mains, burgers, and hand-rolled pasta."}}]'
 )
-on conflict (id) do update set updated_at = now();
+on conflict (id) do update set 
+  name = excluded.name, 
+  tagline = excluded.tagline, 
+  description = excluded.description, 
+  working_hours = excluded.working_hours, 
+  updated_at = now();
 
 -- ==============================================================================
 -- 3. KATEGORİLER (CATEGORIES)
 -- ==============================================================================
 
-insert into categories (id, slug, name, icon_name, description, "order")
+insert into categories (id, slug, name, icon_name, description, "order", section, image)
 values
-  ('cat-mains', 'ana-yemekler', '{"tr": "Ana Yemekler", "en": "Main Courses"}', 'UtensilsCrossed', '{"tr": "Şefimizin özel reçeteleriyle hazırlanan et, tavuk ve somon tabakları", "en": "Chef signature grilled meats, salmon, and gourmet platters"}', 1),
-  ('cat-burgers', 'burger-sandvic', '{"tr": "Burgerler & Dürümler", "en": "Burgers & Sandwiches"}', 'Sandwich', '{"tr": "Brioche ekmeğinde smash burgerler ve çıtır tavuk seçenekleri", "en": "Brioche smash burgers and crispy buttermilk chicken sandwiches"}', 2),
-  ('cat-pastas', 'makarna-bowllar', '{"tr": "Makarnalar & Salatalar", "en": "Pastas & Bowls"}', 'UtensilsCrossed', '{"tr": "Taze soslu İtalyan makarnaları ve renkli besleyici kinoa bowlları", "en": "Artisan Italian pastas and fresh nutritious superfood bowls"}', 3),
-  ('cat-breakfast', 'kahvalti', '{"tr": "Kahvaltı & Brunch", "en": "Breakfast & Brunch"}', 'UtensilsCrossed', '{"tr": "Ekşi mayalı tostlar, poşe yumurtalar ve zengin kruvasanlar", "en": "Sourdough toasts, organic poached eggs, and stuffed croissants"}', 4),
-  ('cat-coffee', 'kahveler', '{"tr": "Kahveler", "en": "Specialty Coffee"}', 'Coffee', '{"tr": "Espresso klasikleri, cortado, latte ve nitelikli V60 demlemeler", "en": "Espresso classics, flat white, cortado, and single-origin V60 brews"}', 5),
-  ('cat-cold-drinks', 'soguk-icecekler', '{"tr": "Soğuk İçecekler", "en": "Cold Drinks"}', 'GlassWater', '{"tr": "18 saat soğuk demlenmiş Cold Brew, ev yapımı limonatalar ve matcha", "en": "18h cold brews, handcrafted berry lemonades, and matcha lattes"}', 6),
-  ('cat-desserts', 'tatlilar', '{"tr": "Tatlılar & Fırın", "en": "Bakery & Desserts"}', 'CakeSlice', '{"tr": "San Sebastian Cheesecake, fıstıklı tartlar ve taze kruvasanlar", "en": "San Sebastian cheesecake, pistachio pastries, and fresh bakes"}', 7)
-on conflict (id) do update set name = excluded.name, description = excluded.description, "order" = excluded."order";
+  ('cat-mains', 'ana-yemekler', '{"tr": "Ana Yemekler & Izgaralar", "en": "Main Courses & Steaks"}', 'UtensilsCrossed', '{"tr": "Şefimizin özel reçeteleriyle hazırlanan et, tavuk ve somon tabakları", "en": "Chef signature grilled meats, salmon, and gourmet platters"}', 1, 'food', 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80'),
+  ('cat-burgers', 'burger-sandvic', '{"tr": "Burgerler & Sandviçler", "en": "Burgers & Sandwiches"}', 'Sandwich', '{"tr": "Brioche ekmeğinde smash burgerler ve çıtır tavuk seçenekleri", "en": "Brioche smash burgers and crispy buttermilk chicken sandwiches"}', 2, 'food', 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80'),
+  ('cat-pastas', 'makarna-bowllar', '{"tr": "Makarnalar & Salatalar", "en": "Pastas & Bowls"}', 'UtensilsCrossed', '{"tr": "Taze soslu İtalyan makarnaları ve renkli besleyici kinoa bowlları", "en": "Artisan Italian pastas and fresh nutritious superfood bowls"}', 3, 'food', 'https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=800&q=80'),
+  ('cat-breakfast', 'kahvalti', '{"tr": "Kahvaltı & Brunch", "en": "Breakfast & Brunch"}', 'UtensilsCrossed', '{"tr": "Ekşi mayalı tostlar, poşe yumurtalar ve zengin kruvasanlar", "en": "Sourdough toasts, organic poached eggs, and stuffed croissants"}', 4, 'food', 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80'),
+  ('cat-desserts', 'tatlilar', '{"tr": "Tatlılar & Butik Fırın", "en": "Bakery & Desserts"}', 'CakeSlice', '{"tr": "San Sebastian Cheesecake, fıstıklı tartlar ve taze kruvasanlar", "en": "San Sebastian cheesecake, pistachio pastries, and fresh bakes"}', 5, 'food', 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80'),
+  ('cat-coffee', 'kahveler', '{"tr": "Sıcak Kahveler & Çaylar", "en": "Specialty Coffee & Tea"}', 'Coffee', '{"tr": "Espresso klasikleri, cortado, latte ve nitelikli V60 demlemeler", "en": "Espresso classics, flat white, cortado, and single-origin V60 brews"}', 6, 'drinks', 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=800&q=80'),
+  ('cat-cold-drinks', 'soguk-icecekler', '{"tr": "Soğuk İçecekler & Mocktail", "en": "Cold Drinks & Mocktails"}', 'GlassWater', '{"tr": "18 saat soğuk demlenmiş Cold Brew, ev yapımı limonatalar ve matcha", "en": "18h cold brews, handcrafted berry lemonades, and matcha lattes"}', 7, 'drinks', 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80')
+on conflict (id) do update set 
+  name = excluded.name, 
+  description = excluded.description, 
+  "order" = excluded."order",
+  section = excluded.section,
+  image = excluded.image;
 
 -- ==============================================================================
 -- 4. ÜRÜNLER (PRODUCTS)
@@ -135,4 +153,16 @@ values
 
   -- Tatlılar
   ('prod-san-sebastian', 'cat-desserts', '{"tr": "Belçika Çikolatalı San Sebastian", "en": "San Sebastian Cheesecake with Belgian Chocolate"}', '{"tr": "İçi akışkan ve ipeksi kıvamda pişmiş orijinal Bask cheesecake, yanında ılık %70 Callebaut eritme çikolata sosu ile.", "en": "Authentic creamy Basque burnt cheesecake served with warm 70% Callebaut dark chocolate pour."}', 210, '₺', 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80', array['popular', 'chef_special'], 480, '3', '{"tr": ["Taze Krem Peynir", "Krema", "Organik Yumurta", "Callebaut Çikolata"], "en": ["Cream Cheese", "Heavy Cream", "Organic Eggs", "Callebaut Chocolate"]}', '{"tr": ["Süt ve Süt Ürünleri", "Yumurta"], "en": ["Dairy", "Eggs"]}', true, true)
-on conflict (id) do update set name = excluded.name, description = excluded.description, price = excluded.price, image = excluded.image;
+on conflict (id) do update set 
+  category_id = excluded.category_id,
+  name = excluded.name, 
+  description = excluded.description, 
+  price = excluded.price, 
+  image = excluded.image,
+  tags = excluded.tags,
+  calories = excluded.calories,
+  prep_time = excluded.prep_time,
+  ingredients = excluded.ingredients,
+  allergens = excluded.allergens,
+  is_available = excluded.is_available,
+  featured = excluded.featured;
