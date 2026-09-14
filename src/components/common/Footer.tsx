@@ -9,111 +9,133 @@ import {
   MapPin, 
   Phone, 
   Clock, 
-  Wifi, 
-  SmartphoneNfc,
-  Heart
+  ExternalLink,
+  Sparkles,
+  SmartphoneNfc
 } from 'lucide-react';
 
 interface FooterProps {
   cafeConfig: CafeConfig;
-  onOpenWifi: () => void;
+  onOpenWifi?: () => void;
+  compact?: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = ({ cafeConfig, onOpenWifi }) => {
+export const Footer: React.FC<FooterProps> = ({ cafeConfig, onOpenWifi, compact = false }) => {
   const { t, getLocalized } = useLanguage();
 
+  if (compact) {
+    return (
+      <footer className="py-6 px-4 border-t border-[#E8DFD5] bg-[#F3ECE2]/60">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8C7A6E]">
+          <a
+            href={`https://instagram.com/${cafeConfig.instagram}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#E8DFD5] text-[#1F1612] font-bold hover:border-[#E1306C] hover:text-[#E1306C] transition-all shadow-2xs group active:scale-95"
+          >
+            <div className="w-5 h-5 rounded-md bg-gradient-to-tr from-[#FD1D1D] via-[#E1306C] to-[#833AB4] text-white flex items-center justify-center">
+              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
+            <span className="font-semibold text-xs tracking-tight">@{cafeConfig.instagram}</span>
+            <ExternalLink className="w-3 h-3 text-[#8C7A6E] group-hover:text-[#E1306C]" />
+          </a>
+
+          <div>© {new Date().getFullYear()} {cafeConfig.name}</div>
+        </div>
+      </footer>
+    );
+  }
+
   return (
-    <footer className="mt-16 bg-[#F3ECE2] border-t border-[#E8DFD5] pt-10 pb-16 px-4">
+    <footer className="mt-12 bg-[#F3ECE2] border-t border-[#E8DFD5] pt-12 pb-16 px-4">
       <div className="max-w-4xl mx-auto space-y-8">
-        {/* Top Info Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Prominent High-End Instagram CTA Card */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#1F1612] to-[#34241C] p-6 sm:p-8 text-white shadow-md">
+          <div className="absolute top-0 right-0 -mr-8 -mt-8 w-48 h-48 bg-gradient-to-br from-[#E1306C]/30 to-[#FD1D1D]/20 rounded-full blur-2xl pointer-events-none" />
           
-          {/* Brand & Description */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-[#1F1612]">
-              <div className="w-7 h-7 rounded-lg bg-[#1F1612] text-[#FAF7F2] flex items-center justify-center">
-                <Coffee className="w-3.5 h-3.5 text-[#DDA15E]" />
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-[#DDA15E]">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Instagram Topluluğumuz</span>
               </div>
-              <span className="font-extrabold text-base tracking-tight">{cafeConfig.name}</span>
+              <h3 className="text-xl sm:text-2xl font-black text-[#FAF7F2] tracking-tight">
+                @{cafeConfig.instagram}
+              </h3>
+              <p className="text-xs sm:text-sm text-[#D5C3B3] max-w-md leading-relaxed">
+                Günlük fırın lezzetlerimizi, özel kavrum kahve hikayelerimizi ve etkinliklerimizi Instagram'da takip edin.
+              </p>
+            </div>
+
+            <a
+              href={`https://instagram.com/${cafeConfig.instagram}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#FD1D1D] via-[#E1306C] to-[#833AB4] text-white font-bold text-sm hover:opacity-90 active:scale-95 transition-all shadow-lg shrink-0"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <span>Takip Et</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Info Grid (Address, Phone, Hours) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          {/* Address Card */}
+          <div className="p-4 rounded-2xl bg-white border border-[#E8DFD5] space-y-2">
+            <div className="flex items-center gap-2 text-[#C46835]">
+              <MapPin className="w-4 h-4" />
+              <span className="text-xs font-bold uppercase tracking-wider text-[#1F1612]">
+                {t('address')}
+              </span>
             </div>
             <p className="text-xs text-[#6B5E55] leading-relaxed">
-              {getLocalized(cafeConfig.description)}
+              {getLocalized(cafeConfig.address)}
             </p>
           </div>
 
-          {/* Contact & Address */}
-          <div className="space-y-2.5 text-xs text-[#6B5E55]">
-            <h4 className="font-bold text-[#1F1612] uppercase tracking-wider text-[11px]">
-              {t('address')}
-            </h4>
-            <div className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 text-[#C46835] shrink-0 mt-0.5" />
-              <span>{getLocalized(cafeConfig.address)}</span>
+          {/* Contact Card */}
+          <div className="p-4 rounded-2xl bg-white border border-[#E8DFD5] space-y-2">
+            <div className="flex items-center gap-2 text-[#C46835]">
+              <Phone className="w-4 h-4" />
+              <span className="text-xs font-bold uppercase tracking-wider text-[#1F1612]">
+                İletişim &amp; Rezervasyon
+              </span>
             </div>
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-[#C46835] shrink-0" />
-              <a href={`tel:${cafeConfig.phone}`} className="hover:text-[#1F1612] font-semibold">
-                {cafeConfig.phone}
-              </a>
-            </div>
+            <a 
+              href={`tel:${cafeConfig.phone}`} 
+              className="inline-block text-sm font-bold text-[#1F1612] hover:text-[#C46835] transition-colors"
+            >
+              {cafeConfig.phone}
+            </a>
           </div>
 
-          {/* Hours & Social */}
-          <div className="space-y-2.5 text-xs text-[#6B5E55]">
-            <h4 className="font-bold text-[#1F1612] uppercase tracking-wider text-[11px]">
-              {t('hours')}
-            </h4>
-            <div className="flex items-start gap-2">
-              <Clock className="w-4 h-4 text-[#C46835] shrink-0 mt-0.5" />
-              <span>{getLocalized(cafeConfig.workingHours)}</span>
+          {/* Hours Card */}
+          <div className="p-4 rounded-2xl bg-white border border-[#E8DFD5] space-y-2">
+            <div className="flex items-center gap-2 text-[#C46835]">
+              <Clock className="w-4 h-4" />
+              <span className="text-xs font-bold uppercase tracking-wider text-[#1F1612]">
+                {t('hours')}
+              </span>
             </div>
-            <div className="pt-1">
-              <a
-                href={`https://instagram.com/${cafeConfig.instagram}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-[#E8DFD5] text-[#1F1612] font-semibold hover:border-[#C46835] transition-colors"
-              >
-                <svg className="w-3.5 h-3.5 text-[#E1306C]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-                </svg>
-                <span>@{cafeConfig.instagram}</span>
-              </a>
-            </div>
+            <p className="text-xs text-[#6B5E55] font-semibold">
+              {getLocalized(cafeConfig.workingHours)}
+            </p>
           </div>
         </div>
 
-        {/* NFC Reminder Banner */}
-        <div className="p-4 rounded-2xl bg-white border border-[#E8DFD5] flex items-center justify-between gap-3 shadow-2xs">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#FBF0E9] text-[#C46835] flex items-center justify-center shrink-0">
-              <SmartphoneNfc className="w-5 h-5" />
-            </div>
-            <div className="text-xs">
-              <div className="font-bold text-[#1F1612]">{t('poweredBy')}</div>
-              <div className="text-[#8C7A6E]">{t('tapAgainNote')}</div>
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={onOpenWifi}
-            className="shrink-0 px-3 py-1.5 rounded-lg bg-[#FAF7F2] border border-[#DDD3C7] text-xs font-bold text-[#1F1612] hover:bg-[#F3ECE2]"
-          >
-            {t('connectWifi')}
-          </button>
-        </div>
-
-        {/* Bottom Bar */}
+        {/* Bottom Copyright & Language */}
         <div className="pt-4 border-t border-[#E8DFD5] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8C7A6E]">
-          <div className="flex items-center gap-1">
-            <span>© {new Date().getFullYear()} {cafeConfig.name}. {t('allRightsReserved')}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <LanguageToggle variant="pill" />
-          </div>
+          <div>© {new Date().getFullYear()} {cafeConfig.name}. {t('allRightsReserved')}</div>
+          <LanguageToggle variant="pill" />
         </div>
+
       </div>
     </footer>
   );

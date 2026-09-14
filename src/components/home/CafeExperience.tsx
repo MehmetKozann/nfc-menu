@@ -105,6 +105,7 @@ export const CafeExperience: React.FC<CafeExperienceProps> = ({
       <Footer
         cafeConfig={cafeConfig}
         onOpenWifi={handleOpenWifi}
+        compact={currentView === 'welcome'}
       />
 
       {/* Wi-Fi Modal */}
