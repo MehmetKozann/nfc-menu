@@ -116,16 +116,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <span>{getLocalized(cafeConfig.workingHours)}</span>
           </div>
         </div>
-
-        {/* Scroll down prompt to menu */}
-        <button
-          type="button"
-          onClick={onViewMenuClick}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8C7A6E] hover:text-[#1F1612] transition-colors pt-1 animate-bounce"
-        >
-          <span>{t('viewMenu')}</span>
-          <ChevronDown className="w-4 h-4" />
-        </button>
       </div>
     </section>
   );

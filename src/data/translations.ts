@@ -20,6 +20,10 @@ export const translations = {
     address: "Adres & Konum",
     followUs: "Instagram'da Takip Et",
     poweredBy: "NFC Akıllı Menü Deneyimi",
+    backToWelcome: "Karşılama Ekranı",
+    wifiAutoConnecting: "Wi-Fi Bağlantısı Başlatılıyor...",
+    wifiProfilePrompt: "Apple cihazınız için Wi-Fi profili hazırlandı. 'İzin Ver' butonuna dokunun.",
+    wifiAndroidPrompt: "Şifre panoya kopyalandı! QR kodu okutarak veya Wi-Fi listenizden hemen bağlanabilirsiniz.",
     
     // Welcome / Landing Screen
     welcomeTitle: "Hoş Geldiniz",
@@ -136,6 +140,10 @@ export const translations = {
     address: "Location & Address",
     followUs: "Follow on Instagram",
     poweredBy: "NFC Smart Menu Experience",
+    backToWelcome: "Welcome Screen",
+    wifiAutoConnecting: "Initiating Wi-Fi Connection...",
+    wifiProfilePrompt: "Wi-Fi profile generated for Apple devices. Tap 'Allow' to install.",
+    wifiAndroidPrompt: "Password copied to clipboard! Scan the QR or select network in Wi-Fi settings.",
     
     // Welcome / Landing Screen
     welcomeTitle: "Welcome",
