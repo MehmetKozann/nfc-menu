@@ -1,0 +1,16 @@
+{
+  "name": "Roast & Bloom Smart Cafe",
+  "short_name": "Roast & Bloom",
+  "description": "Özel Kavrum Kahve, Artisan Fırın ve Hızlı Wi-Fi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF7F2",
+  "theme_color": "#FAF7F2",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
