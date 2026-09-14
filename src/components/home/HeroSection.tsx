@@ -46,8 +46,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </span>
             </div>
           ) : (
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#F3ECE2] border border-[#E8DFD5] text-[#8C7A6E] text-xs font-semibold">
-              <Sparkles className="w-3.5 h-3.5 text-[#DDA15E]" />
+            <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-[#F3ECE2] border border-[#E8DFD5] text-[#8C7A6E] text-xs font-semibold">
               <span>{t('poweredBy')}</span>
             </div>
           )}
