@@ -114,10 +114,134 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* 3D Book Page Flip Animations */
+@keyframes bookOpen {
+  0% {
+    opacity: 0.2;
+    transform: perspective(1800px) rotateY(28deg) scale(0.95) translateX(30px);
+    transform-origin: left center;
+    filter: brightness(0.88);
+  }
+  60% {
+    filter: brightness(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1800px) rotateY(0deg) scale(1) translateX(0);
+    transform-origin: left center;
+    filter: brightness(1);
+  }
+}
+
+@keyframes bookClose {
+  0% {
+    opacity: 0.2;
+    transform: perspective(1800px) rotateY(-28deg) scale(0.95) translateX(-30px);
+    transform-origin: right center;
+    filter: brightness(0.88);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1800px) rotateY(0deg) scale(1) translateX(0);
+    transform-origin: right center;
+    filter: brightness(1);
+  }
+}
+
+@keyframes pageTurnForward {
+  0% {
+    opacity: 0;
+    transform: perspective(1600px) rotateY(24deg) scale(0.96) translateX(40px);
+    transform-origin: left center;
+    box-shadow: -15px 0 35px -5px rgba(31, 22, 18, 0.25);
+  }
+  50% {
+    transform: perspective(1600px) rotateY(8deg) scale(0.98) translateX(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1600px) rotateY(0deg) scale(1) translateX(0);
+    transform-origin: left center;
+    box-shadow: none;
+  }
+}
+
+@keyframes pageTurnBackward {
+  0% {
+    opacity: 0;
+    transform: perspective(1600px) rotateY(-24deg) scale(0.96) translateX(-40px);
+    transform-origin: right center;
+    box-shadow: 15px 0 35px -5px rgba(31, 22, 18, 0.25);
+  }
+  50% {
+    transform: perspective(1600px) rotateY(-8deg) scale(0.98) translateX(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1600px) rotateY(0deg) scale(1) translateX(0);
+    transform-origin: right center;
+    box-shadow: none;
+  }
+}
+
+@keyframes productCardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-slide-up {
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Book Page Flip Classes */
+.animate-book-open {
+  animation: bookOpen 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-book-close {
+  animation: bookClose 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-page-turn-forward {
+  animation: pageTurnForward 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-page-turn-backward {
+  animation: pageTurnBackward 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-product-card {
+  animation: productCardEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Book spine visual texture */
+.book-spine-left {
+  position: relative;
+}
+.book-spine-left::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: linear-gradient(90deg, rgba(31, 22, 18, 0.08) 0%, rgba(31, 22, 18, 0.02) 60%, transparent 100%);
+  pointer-events: none;
+  z-index: 20;
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
 }

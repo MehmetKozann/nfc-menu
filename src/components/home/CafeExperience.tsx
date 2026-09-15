@@ -27,6 +27,7 @@ export const CafeExperience: React.FC<CafeExperienceProps> = ({
   const { t } = useLanguage();
   // Start strictly in 'welcome' mode so the menu is NOT rendered until 'Menüyü Gör' is clicked
   const [currentView, setCurrentView] = useState<'welcome' | 'menu'>('welcome');
+  const [transitionAnim, setTransitionAnim] = useState<'open' | 'close' | null>(null);
   const [isWifiOpen, setIsWifiOpen] = useState(false);
   const [isServiceOpen, setIsServiceOpen] = useState(false);
 
@@ -35,17 +36,19 @@ export const CafeExperience: React.FC<CafeExperienceProps> = ({
   };
 
   const handleViewMenu = () => {
+    setTransitionAnim('open');
     setCurrentView('menu');
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   const handleBackToWelcome = () => {
+    setTransitionAnim('close');
     setCurrentView('welcome');
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] text-[#1F1612] flex flex-col selection:bg-[#FBF0E9] selection:text-[#C46835]">
+    <div className="min-h-screen bg-[#FAF7F2] text-[#1F1612] flex flex-col selection:bg-[#FBF0E9] selection:text-[#C46835] overflow-x-hidden">
       {/* Sticky Header */}
       <Navbar
         cafeConfig={cafeConfig}
@@ -54,11 +57,16 @@ export const CafeExperience: React.FC<CafeExperienceProps> = ({
         onOpenService={() => setIsServiceOpen(true)}
       />
 
-      {/* Main Content Area */}
-      <main className="flex-1 w-full flex flex-col">
+      {/* Main Content Area with 3D perspective wrapper */}
+      <main className="flex-1 w-full flex flex-col perspective-[2000px]">
         {currentView === 'welcome' ? (
-          /* STEP 1: Dedicated Fullscreen Welcome Screen (Menu is completely hidden here) */
-          <div className="flex-1 flex flex-col justify-center items-center py-6 px-2 animate-fade-in">
+          /* STEP 1: Dedicated Fullscreen Welcome Screen */
+          <div
+            key="welcome-view"
+            className={`flex-1 flex flex-col justify-center items-center py-6 px-2 ${
+              transitionAnim === 'close' ? 'animate-book-close' : 'animate-fade-in'
+            }`}
+          >
             <HeroSection
               cafeConfig={cafeConfig}
               tableId={tableId}
@@ -67,8 +75,13 @@ export const CafeExperience: React.FC<CafeExperienceProps> = ({
             />
           </div>
         ) : (
-          /* STEP 2: Dedicated Full Digital Menu Screen */
-          <div className="animate-fade-in py-3">
+          /* STEP 2: Dedicated Full Digital Menu Screen with Book Page Turn Animation */
+          <div
+            key="menu-view"
+            className={`py-3 ${
+              transitionAnim === 'open' ? 'animate-book-open' : 'animate-fade-in'
+            }`}
+          >
             {/* Top Navigation Bar inside Menu */}
             <div className="max-w-4xl mx-auto px-4 mb-3 flex items-center justify-between">
               <button

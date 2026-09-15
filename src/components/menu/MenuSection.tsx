@@ -58,9 +58,24 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
   const { t, getLocalized, language } = useLanguage();
   // Start on 'hub' so user first sees the 2 visual department cards (Food & Drinks)
   const [activeDepartment, setActiveDepartment] = useState<MenuDepartment>('hub');
+  const [deptAnim, setDeptAnim] = useState<'forward' | 'backward' | null>(null);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  const handleSelectDepartment = (dept: MenuDepartment) => {
+    setDeptAnim('forward');
+    setActiveDepartment(dept);
+    setSelectedCategoryId('all');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToHub = () => {
+    setDeptAnim('backward');
+    setActiveDepartment('hub');
+    setSelectedCategoryId('all');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Split categories by department using robust classifier
   const foodCategories = useMemo(() => categories.filter(c => getCategorySection(c) === 'food'), [categories]);
@@ -130,7 +145,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
   }, [visibleCategories, products, selectedCategoryId, searchQuery]);
 
   return (
-    <section id="menu-section" className="w-full transition-all">
+    <section id="menu-section" className="w-full transition-all perspective-[1800px]">
       {/* Search Input Bar */}
       <div className="max-w-4xl mx-auto px-4 pt-1 pb-3">
         <SearchBar
@@ -147,7 +162,12 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
 
       {/* VIEW A: VISUAL DEPARTMENT HUB (2 Big Visual Cards for Food & Drinks) */}
       {activeDepartment === 'hub' && searchQuery.trim() === '' && (
-        <div className="max-w-4xl mx-auto px-4 py-4 space-y-6 animate-fade-in">
+        <div
+          key="department-hub"
+          className={`max-w-4xl mx-auto px-4 py-4 space-y-6 ${
+            deptAnim === 'backward' ? 'animate-page-turn-backward' : 'animate-fade-in'
+          }`}
+        >
           <div className="text-center space-y-1">
             <h2 className="text-xl sm:text-2xl font-black text-[#1F1612]">
               {t('selectDepartment')}
@@ -163,10 +183,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
               type="food"
               itemCount={foodProductsCount}
               categoryCount={foodCategories.length}
-              onClick={() => {
-                setActiveDepartment('food');
-                setSelectedCategoryId('all');
-              }}
+              onClick={() => handleSelectDepartment('food')}
             />
 
             {/* Card 2: İçecekler */}
@@ -174,10 +191,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
               type="drinks"
               itemCount={drinksProductsCount}
               categoryCount={drinksCategories.length}
-              onClick={() => {
-                setActiveDepartment('drinks');
-                setSelectedCategoryId('all');
-              }}
+              onClick={() => handleSelectDepartment('drinks')}
             />
           </div>
         </div>
@@ -185,7 +199,10 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
 
       {/* VIEW B: CATEGORIES & PRODUCT LISTING (When Food / Drinks / All is Selected or Searching) */}
       {(activeDepartment !== 'hub' || searchQuery.trim() !== '') && (
-        <div className="animate-fade-in">
+        <div
+          key={`department-${activeDepartment}`}
+          className={deptAnim === 'forward' ? 'animate-page-turn-forward' : 'animate-fade-in'}
+        >
           {/* Sticky Category Bar for Subcategories of active department */}
           <CategoryBar
             categories={visibleCategories}
@@ -205,11 +222,8 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => {
-                    setActiveDepartment('hub');
-                    setSelectedCategoryId('all');
-                  }}
-                  className="text-xs text-[#C46835] hover:underline font-bold flex items-center gap-1"
+                  onClick={handleBackToHub}
+                  className="text-xs text-[#C46835] hover:underline font-bold flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E8DFD5] shadow-2xs hover:bg-[#F3ECE2] active:scale-95 transition-all"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                   <span>{language === 'tr' ? 'Tüm Bölümler' : 'All Departments'}</span>
@@ -296,7 +310,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
 
             {/* Flat Product Grid (When specific subcategory selected or searching) */}
             {(!groupedProducts || groupedProducts.length === 0) && filteredProducts.length > 0 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div key={`flat-grid-${selectedCategoryId}`} className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-page-turn-forward">
                 {filteredProducts.map((product) => (
                   <ProductCard
                     key={product.id}
