@@ -9,12 +9,8 @@ import { ProductCard } from './ProductCard';
 import { ProductDetailModal } from '../modals/ProductDetailModal';
 import { DepartmentCard } from './DepartmentCard';
 import { 
-  Utensils, 
-  Coffee,
   SearchX, 
-  Layers,
-  ArrowLeft,
-  LayoutGrid
+  ArrowLeft
 } from 'lucide-react';
 
 interface MenuSectionProps {
@@ -147,75 +143,6 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
           }}
           onClear={() => setSearchQuery('')}
         />
-      </div>
-
-      {/* Main Department Segmented Bar */}
-      <div className="max-w-4xl mx-auto px-4 mb-3">
-        <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-[#F3ECE2] border border-[#E8DFD5] shadow-inner text-xs font-bold">
-          <button
-            type="button"
-            onClick={() => {
-              setActiveDepartment('hub');
-              setSelectedCategoryId('all');
-            }}
-            className={`flex-1 py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all ${
-              activeDepartment === 'hub'
-                ? 'bg-[#1F1612] text-white shadow-xs'
-                : 'text-[#6B5E55] hover:text-[#1F1612]'
-            }`}
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span>{language === 'tr' ? 'Bölümler' : 'Departments'}</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => {
-              setActiveDepartment('food');
-              setSelectedCategoryId('all');
-            }}
-            className={`flex-1 py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all ${
-              activeDepartment === 'food'
-                ? 'bg-[#C46835] text-white shadow-xs'
-                : 'text-[#6B5E55] hover:text-[#1F1612]'
-            }`}
-          >
-            <Utensils className="w-3.5 h-3.5" />
-            <span>{t('foodMenu')}</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => {
-              setActiveDepartment('drinks');
-              setSelectedCategoryId('all');
-            }}
-            className={`flex-1 py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all ${
-              activeDepartment === 'drinks'
-                ? 'bg-[#C46835] text-white shadow-xs'
-                : 'text-[#6B5E55] hover:text-[#1F1612]'
-            }`}
-          >
-            <Coffee className="w-3.5 h-3.5" />
-            <span>{t('drinksMenu')}</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => {
-              setActiveDepartment('all');
-              setSelectedCategoryId('all');
-            }}
-            className={`py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all ${
-              activeDepartment === 'all'
-                ? 'bg-[#1F1612] text-white shadow-xs'
-                : 'text-[#6B5E55] hover:text-[#1F1612]'
-            }`}
-          >
-            <LayoutGrid className="w-3.5 h-3.5" />
-            <span>{t('allCategories')}</span>
-          </button>
-        </div>
       </div>
 
       {/* VIEW A: VISUAL DEPARTMENT HUB (2 Big Visual Cards for Food & Drinks) */}
