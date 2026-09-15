@@ -4,15 +4,6 @@ import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { CafeConfig } from '@/types';
 import { LanguageToggle } from './LanguageToggle';
-import { 
-  Coffee, 
-  MapPin, 
-  Phone, 
-  Clock, 
-  ExternalLink,
-  Sparkles,
-  SmartphoneNfc
-} from 'lucide-react';
 
 interface FooterProps {
   cafeConfig: CafeConfig;
@@ -20,8 +11,8 @@ interface FooterProps {
   compact?: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = ({ cafeConfig, onOpenWifi, compact = false }) => {
-  const { t, getLocalized } = useLanguage();
+export const Footer: React.FC<FooterProps> = ({ cafeConfig, compact = false }) => {
+  const { t } = useLanguage();
 
   if (compact) {
     return (
@@ -34,8 +25,8 @@ export const Footer: React.FC<FooterProps> = ({ cafeConfig, onOpenWifi, compact 
   }
 
   return (
-    <footer className="mt-12 bg-[#F3ECE2] border-t border-[#E8DFD5] pt-12 pb-16 px-4">
-      <div className="max-w-4xl mx-auto space-y-8">
+    <footer className="mt-12 bg-[#F3ECE2] border-t border-[#E8DFD5] pt-10 pb-16 px-4">
+      <div className="max-w-4xl mx-auto space-y-6">
         
         {/* Prominent High-End Instagram CTA Card */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#1F1612] to-[#34241C] p-6 sm:p-8 text-white shadow-md">
@@ -44,7 +35,6 @@ export const Footer: React.FC<FooterProps> = ({ cafeConfig, onOpenWifi, compact 
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-[#DDA15E]">
-                <Sparkles className="w-3.5 h-3.5" />
                 <span>Instagram Topluluğumuz</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-[#FAF7F2] tracking-tight">
@@ -66,52 +56,6 @@ export const Footer: React.FC<FooterProps> = ({ cafeConfig, onOpenWifi, compact 
               </svg>
               <span>Takip Et</span>
             </a>
-          </div>
-        </div>
-
-        {/* Info Grid (Address, Phone, Hours) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          
-          {/* Address Card */}
-          <div className="p-4 rounded-2xl bg-white border border-[#E8DFD5] space-y-2">
-            <div className="flex items-center gap-2 text-[#C46835]">
-              <MapPin className="w-4 h-4" />
-              <span className="text-xs font-bold uppercase tracking-wider text-[#1F1612]">
-                {t('address')}
-              </span>
-            </div>
-            <p className="text-xs text-[#6B5E55] leading-relaxed">
-              {getLocalized(cafeConfig.address)}
-            </p>
-          </div>
-
-          {/* Contact Card */}
-          <div className="p-4 rounded-2xl bg-white border border-[#E8DFD5] space-y-2">
-            <div className="flex items-center gap-2 text-[#C46835]">
-              <Phone className="w-4 h-4" />
-              <span className="text-xs font-bold uppercase tracking-wider text-[#1F1612]">
-                İletişim &amp; Rezervasyon
-              </span>
-            </div>
-            <a 
-              href={`tel:${cafeConfig.phone}`} 
-              className="inline-block text-sm font-bold text-[#1F1612] hover:text-[#C46835] transition-colors"
-            >
-              {cafeConfig.phone}
-            </a>
-          </div>
-
-          {/* Hours Card */}
-          <div className="p-4 rounded-2xl bg-white border border-[#E8DFD5] space-y-2">
-            <div className="flex items-center gap-2 text-[#C46835]">
-              <Clock className="w-4 h-4" />
-              <span className="text-xs font-bold uppercase tracking-wider text-[#1F1612]">
-                {t('hours')}
-              </span>
-            </div>
-            <p className="text-xs text-[#6B5E55] font-semibold">
-              {getLocalized(cafeConfig.workingHours)}
-            </p>
           </div>
         </div>
 
